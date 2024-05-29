@@ -7,7 +7,7 @@ app.use(express.json())
 
 app.get('/', (req,res) => {
 	res.set('Content-Type', 'text/html');
-	res.status(200).send('<h1>Hello World</>')
+	res.status(200).send('<h1>Hello World</h1>')
 })
 
 app.listen(3000, (error,) => {
