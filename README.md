@@ -11,5 +11,4 @@ bad practices and code smells.
 
 # How to Proceed
 
-To be evaluated, the candidate must fork this repo, create a fix/dyno-test branch based on develop
-and, once finished, create a PR targeting this repo develop branch. 
+To be evaluated, the candidate must fork this repo, commit and push your changes, and once finished please upload to the Greenhouse link provided in your email.
