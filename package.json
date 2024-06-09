@@ -4,10 +4,11 @@
 	"description": "This project is the assessment for Nodejs developers",
 	"main": "src/index.js",
 	"scripts": {
-		"start": "ts-node ./src/index.ts",
+		"start": "ts-node -r tsconfig-paths/register ./src/index.ts",
 		"start:watch": "nodemon",
 		"test": "jest",
-		"prepare": "husky"
+		"prepare": "husky",
+		"build": "tsc"
 	},
 	"repository": {
 		"type": "git",
@@ -39,6 +40,7 @@
 		"prettier": "^3.3.1",
 		"ts-jest": "^29.1.4",
 		"ts-node": "^10.9.2",
+		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.4.5"
 	}
 }

@@ -1,6 +1,7 @@
 {
 	"watch": ["."],
 	"ext": "ts",
-	"exec": "ts-node ./src/index.ts",
-	"delay": "250"
+	"exec": "ts-node -r tsconfig-paths/register ./src/index.ts",
+	"delay": "250",
+	"ignore": ["dist", "node_modules"]
 }
