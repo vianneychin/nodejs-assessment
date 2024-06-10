@@ -9,17 +9,29 @@ export interface Controller {
 	/**
 	 * Get all records
 	 */
-	index?: (req: Request, res: Response, next?: NextFunction) => Promise<void>;
+	index?: (
+		req: Request,
+		res: Response,
+		next?: NextFunction
+	) => Promise<Response>;
 
 	/**
 	 * Get a single record
 	 */
-	show?: (req: Request, res: Response, next?: NextFunction) => Promise<void>;
+	show?: (
+		req: Request,
+		res: Response,
+		next?: NextFunction
+	) => Promise<Response>;
 
 	/**
 	 * Store a record
 	 */
-	store?: (req: Request, res: Response, next?: NextFunction) => Promise<void>;
+	store?: (
+		req: Request,
+		res: Response,
+		next?: NextFunction
+	) => Promise<Response>;
 
 	/**
 	 * Update a record
@@ -28,7 +40,7 @@ export interface Controller {
 		req: Request,
 		res: Response,
 		next?: NextFunction
-	) => Promise<void>;
+	) => Promise<Response>;
 
 	/**
 	 * Delete a record
@@ -37,5 +49,5 @@ export interface Controller {
 		req: Request,
 		res: Response,
 		next?: NextFunction
-	) => Promise<void>;
+	) => Promise<Response>;
 }
