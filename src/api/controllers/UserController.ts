@@ -1,7 +1,13 @@
-import { Request, Response, Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 import { Controller } from './Controller';
 import { HttpStatusCodes } from 'constants/';
 import { UserCollectionBuilder } from 'services/UserCollectionBuilder';
+import {
+	validateId,
+	validatePagination,
+	validateUserCreate,
+	validateUserUpdate,
+} from 'middleware/user.middleware';
 
 class UserController implements Controller {
 	/**
@@ -14,17 +20,17 @@ class UserController implements Controller {
 		private userCollectionBuilder: UserCollectionBuilder = new UserCollectionBuilder(),
 		public router: Router = Router()
 	) {
-		this.router.get('/', this.index);
-		this.router.get('/:id', this.show);
-		this.router.post('/', this.store);
-		this.router.put('/:id', this.update);
-		this.router.delete('/:id', this.delete);
+		this.router.get('/', validatePagination, this.index);
+		this.router.get('/:id', validateId, this.show);
+		this.router.post('/', validateUserCreate, this.store);
+		this.router.put('/:id', validateUserUpdate, this.update);
+		this.router.delete('/:id', validateId, this.delete);
 	}
 
 	/**
 	 * Get paginated users
 	 */
-	public index = async (req: Request, res: Response) => {
+	public index = async (req: Request, res: Response, next?: NextFunction) => {
 		try {
 			const { page = '1', limit = '25' } = req.query;
 			const users = this.userCollectionBuilder
