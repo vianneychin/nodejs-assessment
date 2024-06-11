@@ -1,15 +1,32 @@
 import fs from 'fs';
 import path from 'path';
 import { User } from 'models/User';
+import { env } from 'configs/env';
 
-const usersFilePath = path.join(__dirname, '..', 'storage', 'users.json');
+const usersFilePath =
+	process.env.NODE_ENV === 'TEST'
+		? path.join(__dirname, '..', 'storage', 'users.test.json')
+		: path.join(__dirname, '..', 'storage', 'users.json');
 
 export class UserCollectionBuilder {
 	private users: User[];
 	private page: number | null = null;
 	private limit: number = 25;
+
 	constructor() {
-		this.users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+		if (env.node === 'TEST') {
+			const originalDb = fs.readFileSync(
+				path.join(__dirname, '..', 'storage', 'users.json'),
+				'utf8'
+			);
+			this.users = JSON.parse(originalDb);
+			fs.writeFileSync(
+				path.join(__dirname, '..', 'storage', 'users.test.json'),
+				originalDb
+			);
+		} else {
+			this.users = JSON.parse(fs.readFileSync(usersFilePath, 'utf8'));
+		}
 	}
 
 	/**
