@@ -1,14 +1,31 @@
-# Dyno Nodejs Assessment
+## 🪴 Installation
 
-The intent of this repository is to evaluate a candidate's coding skills, ability 
-to capture codebase bad practices and refactoring technique knowledge. 
+```bash
+git clone https://github.com/vianneychin/nodejs-assessment.git vianneychin-nodejs-assessment
+cd vianneychin-nodejs-assessment
+npm i && npm run start
+chmod +x .husky/pre-commit # optional
+```
 
-The codebase, despite being small and straightforward, has errors on it and lacks good typing
-since it's using pure Javascript.
+---
 
-The candidate goal is to refactor this application into Typescript code, identify and fix coding
-bad practices and code smells. 
+## 🧪 Testing
+```bash
+npm run test
+```
 
-# How to Proceed
+---
 
-To be evaluated, the candidate must fork this repo, commit and push your changes, and once finished please upload to the Greenhouse link provided in your email.
+## 📓 Notes
+
+- The focus of the assessment was to improve scalability as well as the developer experience for implementing future Models and Controllers for routes. This was done by removing obvious code smells and lack of using traditional design patterns most importantly, **MVC** (Model View Controller).
+
+- The routes were refactored into `src/api/controllers/UserController.ts`. This was a bit opinionated, but I also added the routes to the controller so it was a bit more modularized. I could have added them to their own `Router`, but any feedback there would be greatly appreciated.
+
+- To handle the fake database, I built a separate class utilizing the Builder design pattern. This makes future "queries" very easy to build and easy to grab the values at the speed of thought. You can find the Model builder in `src/services/UserCollectionBuilder.ts`.
+
+- Testing was focused on the most important part of the application which were the non-negotiables, the API routes. To test, I make a copy of the fake database to make sure the original is pristine. You can find the tests in `src/api/controllers/__tests__/UserController.test.ts`.
+
+- Other notable features added that were sort of non-negotiables to me was, pagination, middlewares for validation, prettier, eslint, and self-documenting code which was done using JSDoc comments.
+
+- Original: [https://github.com/dynogg/nodejs-assessment](https://github.com/dynogg/nodejs-assessment)

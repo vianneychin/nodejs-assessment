@@ -10,12 +10,6 @@ import {
 import { HttpStatusCodes } from 'constants/';
 
 class UserController implements Controller {
-	/**
-	 * Inject dependencies and routes
-	 *
-	 * @param {UserCollectionBuilder} userCollectionBuilder
-	 * @param {Router} router
-	 */
 	constructor(
 		private userCollectionBuilder: UserCollectionBuilder = new UserCollectionBuilder(),
 		public router: Router = Router()
@@ -27,9 +21,6 @@ class UserController implements Controller {
 		this.router.delete('/:id', validateId, this.delete);
 	}
 
-	/**
-	 * Get paginated users
-	 */
 	public index = async (req: Request, res: Response) => {
 		try {
 			const { page = '1', limit = '25' } = req.query;
@@ -44,12 +35,9 @@ class UserController implements Controller {
 		}
 	};
 
-	/**
-	 * Get a single user
-	 */
 	public show = async (req: Request, res: Response) => {
 		try {
-			const user = new UserCollectionBuilder()
+			const user = this.userCollectionBuilder
 				.where('id', +req.params.id)
 				.first();
 			if (!user) {
@@ -65,9 +53,6 @@ class UserController implements Controller {
 		}
 	};
 
-	/**
-	 * Store a new user
-	 */
 	public store = async (req: Request, res: Response) => {
 		const { name, email, address } = req.body;
 		try {
@@ -92,9 +77,6 @@ class UserController implements Controller {
 		}
 	};
 
-	/**
-	 * Update user
-	 */
 	public update = async (req: Request, res: Response) => {
 		const updatedValues = req.body;
 		try {
@@ -117,9 +99,6 @@ class UserController implements Controller {
 		}
 	};
 
-	/**
-	 * Delete a user
-	 */
 	public delete = async (req: Request, res: Response) => {
 		try {
 			const deleted: boolean = this.userCollectionBuilder.delete(
