@@ -26,6 +26,6 @@ npm run test
 
 - Testing was focused on the most important part of the application which were the non-negotiables, the API routes. To test, I make a copy of the fake database to make sure the original is pristine. You can find the tests in `src/api/controllers/__tests__/UserController.test.ts`.
 
-- Other notable features added that were sort of non-negotiables to me was, pagination, middlewares for validation, prettier, eslint, and self-documenting code which was done using JSDoc comments.
+- Other notable features added that were sort of non-negotiables to me was, pagination, middlewares for validation, prettier, eslint, and self-documenting code.
 
 - Original: [https://github.com/dynogg/nodejs-assessment](https://github.com/dynogg/nodejs-assessment)
